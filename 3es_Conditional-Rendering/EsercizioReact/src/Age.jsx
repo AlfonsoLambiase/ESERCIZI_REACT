@@ -1,14 +1,10 @@
 import React from "react";
 
-function Age({ age, name}) {  
-  const eta1 = age >= 18 ? "Sei maggiorenne" : null;  
-  const eta2 = age >= 18 && age < 65 ? "Approvato" : null;  
-  const eta3 = age ? "Approvato" : null; 
-  const eta4 = name === "John" ? "Approvato" : null; 
+function Age({age}) {      // PASSA AL COMPONENTE AGE LA PROPS `AGE`
   return (
-   <>
-   {age} {eta1} {eta2} {eta3} {eta4}
-   </>
+    <>
+      <p>La tua età è: {age}</p>
+    </>
   );
 }
 

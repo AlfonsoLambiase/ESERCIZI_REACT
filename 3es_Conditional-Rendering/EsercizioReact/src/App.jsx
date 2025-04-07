@@ -5,7 +5,7 @@ import Welcome from "./Welcome";  // Importa il componente Welcome
 function App() {
   return (
     <>
-      <Welcome name="Jhon"/>
+      <Welcome age={35}/>
     </>
   );
 }

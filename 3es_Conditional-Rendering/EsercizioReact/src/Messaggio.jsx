@@ -1,11 +1,7 @@
-import Age from "./Age"
 
-function Messaggio(){
-    return(
-<p>{<Age/> > 18 ? "SEI MAGGIORENNE" : "Sei molto giovane!"}</p>
-    )
+function Messaggio({ age }) {         // PASSA COME PROPS IL VALORE DI `AGE`
+
+  return age > 18 ? <p>La tua età è: {age}</p> : <p>Sei molto giovane!</p>;
 }
 
 export default Messaggio;
-
-
