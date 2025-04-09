@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CounterDisplay from "./CounterDisplay";
+import "./Counter.css"
 
 let Counter = (props) => {           
   const [Count, setCount] = useState(props.start);     // USESTATE RESTITUISCE UN ARRAY CON LO STATO E LA FUNZIONE PER MODIFICARLO E INFINE IL VALORE DELLO STATO 
@@ -20,9 +21,9 @@ let Counter = (props) => {
     <>
       <CounterDisplay Count={Count}/>      {/* PASSIAMO AL COMPONENTE IMPORTATO LA CHIAVE E IL VALORE DELLO STATO */}
 
-      <button onClick={Incremento}>Aumenta Qui</button>    
-      <button onClick={Decremento}>Diminuisci Qui</button>    {/* ALL'EVENTO PASSIAMO LA CONST/FUNZIONE CREATA */}
-      <button onClick={Resetta}>Resetta Qui</button>
+      <button className="btn" onClick={Incremento}>Aumenta Qui</button>    
+      <button className="btn" onClick={Decremento}>Diminuisci Qui</button>    {/* ALL'EVENTO PASSIAMO LA CONST/FUNZIONE CREATA */}
+      <button className="btn" onClick={Resetta}>Resetta Qui</button>
     </>
    
   )

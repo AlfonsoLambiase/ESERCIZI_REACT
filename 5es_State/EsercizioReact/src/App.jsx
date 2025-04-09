@@ -1,15 +1,15 @@
 import Counter from "./Counter";
+import "./App.css" 
 
 const App = () => {
   return(
-    <>
+    <div>
     <Counter start={0}/>   {/* DEFINIAMO IL VALORE DI START */}
-    </>
+    </div>
   )
 }
 
 export default App;
-
 
 
 /*
