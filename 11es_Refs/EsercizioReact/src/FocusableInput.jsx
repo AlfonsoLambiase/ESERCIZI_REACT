@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { BoltIcon } from "@heroicons/react/24/solid";
 
 const FocusableInput = () => {
   const inputRef = useRef();  // FA RIFERIMENTO ALL'INPUT NEL TEMPLATE HTML
@@ -8,6 +9,7 @@ const FocusableInput = () => {
 
   return (
     <div>
+      <BoltIcon className="w-10"/>
       <input type="text" ref={inputRef} placeholder="Scrivi qui..." style={{ margin: "30px" }}/>
     </div>
   );
