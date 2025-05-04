@@ -1,25 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Chat = () => {
   const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState([]); // AGGIUNGE UN ARRAY VUOTO DA RIEMPIRE
+  const [messages, setMessages] = useState([]);
+
+  const chatEndRef = useRef(null); // REF PER SCROLL
 
   const handleChange = (event) => {
-    setInputValue(event.target.value); // AGGIORNARE OGNI VOLTA L'INPUT ALLA SCRITTURA
+    setInputValue(event.target.value);
   };
 
   const handleClick = () => {
-    if (inputValue.trim() === "") return; // NON INVIA SE L'INPUT E' VUOTO
+    if (inputValue.trim() === "") return;
 
-    setMessages([...messages, { text: inputValue, scrittore: "user" }]); // AGGIUNGE IL VALORE DELL'INPUT ALL' ARRAY MESSAGGI
+    setMessages([...messages, { text: inputValue, scrittore: "user" }]);
 
     setTimeout(() => {
       setMessages((prev) => [
-        ...prev, { text: "Risposta", scrittore: "risposta" }  // PREV RITORNA IL VALORE PRECEDENTE DELLO STATO
-      ])}, 1000);   // RISPOSTA DOPO 1 SECONDO
+        ...prev,
+        { text: "Risposta", scrittore: "risposta" },
+      ]);
+    }, 1000);
 
-    setInputValue(""); // SVUOTA L'INPUT
+    setInputValue("");
   };
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); // SCROLL AUTOMATICO
+  }, [messages]);
 
   return (
     <div
@@ -30,21 +38,26 @@ const Chat = () => {
         margin: "auto",
         borderRadius: "20px",
       }}>
-      <div style={{}}>
+      <div
+        style={{
+          maxHeight: "300px", // LIMITE ALTEZZA
+          overflowY: "auto",  // SCROLL ABILITATO
+          marginBottom: "10px"
+        }}>
         {messages.map((value, index) => (
           <p
             key={index}
             style={{
-              textAlign: value.scrittore === "user" ? "right" : "left", // ALLINEA A DESTRA L' UTENTE, SINISTRA LA RISPOSTA
-              backgroundColor: value.scrittore === "user" ? "yellow" : "red", // COLORI DIVERSI AI MESSAGGI
+              textAlign: value.scrittore === "user" ? "right" : "left",
+              backgroundColor: value.scrittore === "user" ? "yellow" : "red",
               padding: "8px 12px",
               borderRadius: "8px",
               margin: "5px 0",
             }}>
-            {" "}
             {value.text}
           </p>
         ))}
+        <div ref={chatEndRef} /> {/* REF PER SCROLL */}
       </div>
 
       <input
@@ -58,7 +71,8 @@ const Chat = () => {
           marginBottom: "8px",
           marginLeft: "18%",
           borderRadius: "10px",
-        }}/>
+        }}
+      />
       <button
         onClick={handleClick}
         style={{
