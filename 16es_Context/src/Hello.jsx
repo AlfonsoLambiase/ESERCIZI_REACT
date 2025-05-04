@@ -7,13 +7,8 @@ che consenta all'utente di selezionare la lingua, e passalo come valore al provi
 e mostra il messaggio "Hello, World!" nella lingua corretta
 */
 
-import { useContext } from "react";
-import { LanguagesContext } from "./LanguagesContext";
-
-const Hello = () => {
-  const { language, messages } = useContext(LanguagesContext);
-
-  return <h2>{messages[language]}</h2>;  
+const Hello = ({ lingua }) => {
+  return <h2>{lingua === "it" ? "Ciao" : lingua === "en" ? "Hello" : "Salut"}</h2>;
 };
 
 export default Hello;
