@@ -4,7 +4,7 @@ const Chat = () => {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const chatEndRef = useRef(null); // REF PER SCROLL
+  const chatEndRef = useRef(null);
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -26,7 +26,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); // SCROLL AUTOMATICO
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
@@ -37,13 +37,16 @@ const Chat = () => {
         backgroundColor: "green",
         margin: "auto",
         borderRadius: "20px",
-      }}>
+      }}
+    >
+      
       <div
         style={{
-          maxHeight: "300px", // LIMITE ALTEZZA
-          overflowY: "auto",  // SCROLL ABILITATO
-          marginBottom: "10px"
-        }}>
+          maxHeight: "300px",
+          overflowY: "auto",
+          marginBottom: "10px",
+        }}
+      >
         {messages.map((value, index) => (
           <p
             key={index}
@@ -53,11 +56,13 @@ const Chat = () => {
               padding: "8px 12px",
               borderRadius: "8px",
               margin: "5px 0",
-            }}>
+            }}
+          >
             {value.text}
           </p>
         ))}
-        <div ref={chatEndRef} /> {/* REF PER SCROLL */}
+        <div ref={chatEndRef} />
+
       </div>
 
       <input
@@ -80,7 +85,8 @@ const Chat = () => {
           padding: "8px",
           marginLeft: "18%",
           borderRadius: "10px",
-        }}>
+        }}
+      >
         Invia
       </button>
     </div>
